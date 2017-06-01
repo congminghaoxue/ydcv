@@ -28,6 +28,27 @@ API = "YouDaoCV"
 API_KEY = "659600698"
 
 
+class Logger:
+    def __init__(self):
+        self.terminal = sys.stdout
+        from os.path import expanduser
+        home = expanduser("~")
+        self.log = open(home + "/.vocabulary", "a")
+
+    def write(self, message):
+        self.terminal.write(message)
+        if message != '\nBye':
+            self.log.write(message)
+
+    def isatty(self):
+        return self.terminal.isatty
+    def flush(self):
+        #this flush method is needed for python 3 compatibility.
+        #this handles the flush command by doing nothing.
+        #you might want to specify some extra behavior here.
+        pass
+saved = sys.stdout
+sys.stdout = Logger()
 class Colorizing(object):
     colors = {
         'none': "",

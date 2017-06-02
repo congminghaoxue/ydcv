@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-from __future__ import unicode_literals
-from __future__ import print_function
-from argparse import ArgumentParser
-from subprocess import check_output
-from subprocess import call
-from subprocess import Popen
-from time import sleep
-from distutils import spawn
+from __future__ import print_function, unicode_literals
+
 import json
+import platform
 import re
 import sys
-import platform
+from argparse import ArgumentParser
+from distutils import spawn
+from os.path import expanduser
+from subprocess import Popen, call, check_output
+from time import sleep
 
 try:
     # Py3
@@ -31,7 +30,6 @@ API_KEY = "659600698"
 class Logger:
     def __init__(self):
         self.terminal = sys.stdout
-        from os.path import expanduser
         home = expanduser("~")
         self.log = open(home + "/.vocabulary", "a")
 
